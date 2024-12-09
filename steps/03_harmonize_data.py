@@ -231,7 +231,7 @@ pipeline = [
         group by city.geo_id, city.geo_name, city.total_population
         """,
     ),
-    # Placeholder: Add new view definition here
+    # Step 5 Placeholder: Add new view definition here
     
     View(
         name="attractions",
