@@ -1,6 +1,6 @@
 use role accountadmin;
-use schema quickstart_prod.gold;
---use schema quickstart_{{environment}}.gold;
+--use schema quickstart_prod.gold;
+use schema quickstart_{{environment}}.gold;
 
 
 -- declarative target table of pipeline
@@ -17,8 +17,8 @@ create or alter table vacation_spots (
   , aquarium_cnt int
   , zoo_cnt int
   , korean_restaurant_cnt int
-) data_retention_time_in_days = 1;
---)data_retention_time_in_days = {{retention_time}};
+--) data_retention_time_in_days = 1;
+)data_retention_time_in_days = {{retention_time}};
 
 -- task to merge pipeline results into target table
 create or alter task vacation_spots_update
@@ -148,4 +148,13 @@ git push --set-upstream origin dev
 
 snow git fetch quickstart_common.public.quickstart_repo
 snow git execute @quickstart_common.public.quickstart_repo/branches/dev/steps/0[134]_*
+
+
+next parameterize
+
+git add steps/*
+git commit -m "parametrize pipeline"
+git push
+
+
 */
